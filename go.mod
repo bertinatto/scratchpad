@@ -1,6 +1,6 @@
 module github.com/openshift/gcp-filestore-csi-driver-operator
 
-go 1.17
+go 1.18
 
 require (
 	github.com/openshift/api v0.0.0-20211209135129-c58d9f695577
