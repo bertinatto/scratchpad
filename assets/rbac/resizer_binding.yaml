@@ -1,12 +1,12 @@
 kind: ClusterRoleBinding
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: gcp-pd-csi-resizer-binding
+  name: gcp-filestore-csi-resizer-binding
 subjects:
   - kind: ServiceAccount
-    name: gcp-pd-csi-driver-controller-sa
+    name: gcp-filestore-csi-driver-controller-sa
     namespace: openshift-cluster-csi-drivers
 roleRef:
   kind: ClusterRole
-  name: gcp-pd-external-resizer-role
+  name: gcp-filestore-external-resizer-role
   apiGroup: rbac.authorization.k8s.io

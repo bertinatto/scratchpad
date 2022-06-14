@@ -1,7 +1,7 @@
 kind: ClusterRole
 apiVersion: rbac.authorization.k8s.io/v1
 metadata:
-  name: gcp-pd-external-resizer-role
+  name: gcp-filestore-external-resizer-role
 rules:
   - apiGroups: [""]
     resources: ["persistentvolumes"]

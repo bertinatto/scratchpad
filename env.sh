@@ -1,5 +1,5 @@
-export DRIVER_IMAGE=quay.io/openshift/origin-gcp-pd-csi-driver:latest
-# export DRIVER_IMAGE=quay.io/openshift/origin-gcp-pd-csi-driver:latest
+export DRIVER_IMAGE=quay.io/openshift/origin-gcp-filestore-csi-driver:latest
+# export DRIVER_IMAGE=quay.io/openshift/origin-gcp-filestore-csi-driver:latest
 export PROVISIONER_IMAGE=quay.io/openshift/origin-csi-external-provisioner:latest
 export ATTACHER_IMAGE=quay.io/openshift/origin-csi-external-attacher:latest
 export RESIZER_IMAGE=quay.io/openshift/origin-csi-external-resizer:latest

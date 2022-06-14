@@ -27,9 +27,9 @@ const (
 	// Operand and operator run in the same namespace
 	defaultNamespace   = "openshift-cluster-csi-drivers"
 	operatorName       = "gcp-filestore-csi-driver-operator"
-	operandName        = "gcp-pd-csi-driver"
-	secretName         = "gcp-pd-cloud-credentials"
-	trustedCAConfigMap = "gcp-pd-csi-driver-trusted-ca-bundle"
+	operandName        = "gcp-filestore-csi-driver"
+	secretName         = "gcp-filestore-cloud-credentials"
+	trustedCAConfigMap = "gcp-filestore-csi-driver-trusted-ca-bundle"
 )
 
 func RunOperator(ctx context.Context, controllerConfig *controllercmd.ControllerContext) error {

@@ -2,7 +2,7 @@
 apiVersion: rbac.authorization.k8s.io/v1
 kind: Role
 metadata:
-  name: gcp-pd-csi-driver-prometheus
+  name: gcp-filestore-csi-driver-prometheus
   namespace: openshift-cluster-csi-drivers
 rules:
 - apiGroups:

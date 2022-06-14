@@ -1,6 +1,6 @@
 # gcp-filestore-csi-driver-operator
 
-An operator to deploy the [GCP Filestore CSI Driver](https://github.com/openshift/gcp-pd-csi-driver) in OKD.
+An operator to deploy the [GCP Filestore CSI Driver](https://github.com/openshift/gcp-filestore-csi-driver) in OKD.
 
 This operator is installed by the [cluster-storage-operator](https://github.com/openshift/cluster-storage-operator).
 
@@ -14,20 +14,20 @@ oc scale --replicas=0 deploy/cluster-version-operator -n openshift-cluster-versi
 oc scale --replicas=0 deploy/cluster-storage-operator -n openshift-cluster-storage-operator
 
 # Delete operator resources (daemonset, deployments)
-oc -n openshift-cluster-csi-drivers delete deployment.apps/gcp-filestore-csi-driver-operator deployment.apps/gcp-pd-csi-driver-controller daemonset.apps/gcp-pd-csi-driver-node
+oc -n openshift-cluster-csi-drivers delete deployment.apps/gcp-filestore-csi-driver-operator deployment.apps/gcp-filestore-csi-driver-controller daemonset.apps/gcp-filestore-csi-driver-node
 ```
 
 To build and run the operator locally:
 
 ```shell
 # Create only the resources the operator needs to run via CLI
-oc apply -f https://raw.githubusercontent.com/openshift/cluster-storage-operator/master/assets/csidriveroperators/gcp-pd/08_cr.yaml
+oc apply -f https://raw.githubusercontent.com/openshift/cluster-storage-operator/master/assets/csidriveroperators/gcp-filestore/08_cr.yaml
 
 # Build the operator
 make
 
 # Set the environment variables
-export DRIVER_IMAGE=quay.io/openshift/origin-gcp-pd-csi-driver:latest
+export DRIVER_IMAGE=quay.io/openshift/origin-gcp-filestore-csi-driver:latest
 export PROVISIONER_IMAGE=quay.io/openshift/origin-csi-external-provisioner:latest
 export ATTACHER_IMAGE=quay.io/openshift/origin-csi-external-attacher:latest
 export RESIZER_IMAGE=quay.io/openshift/origin-csi-external-resizer:latest
