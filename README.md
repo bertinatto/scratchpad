@@ -1,6 +1,6 @@
-# gcp-pd-csi-driver-operator
+# gcp-filestore-csi-driver-operator
 
-An operator to deploy the [GCP PD CSI Driver](https://github.com/openshift/gcp-pd-csi-driver) in OKD.
+An operator to deploy the [GCP Filestore CSI Driver](https://github.com/openshift/gcp-pd-csi-driver) in OKD.
 
 This operator is installed by the [cluster-storage-operator](https://github.com/openshift/cluster-storage-operator).
 
@@ -14,7 +14,7 @@ oc scale --replicas=0 deploy/cluster-version-operator -n openshift-cluster-versi
 oc scale --replicas=0 deploy/cluster-storage-operator -n openshift-cluster-storage-operator
 
 # Delete operator resources (daemonset, deployments)
-oc -n openshift-cluster-csi-drivers delete deployment.apps/gcp-pd-csi-driver-operator deployment.apps/gcp-pd-csi-driver-controller daemonset.apps/gcp-pd-csi-driver-node
+oc -n openshift-cluster-csi-drivers delete deployment.apps/gcp-filestore-csi-driver-operator deployment.apps/gcp-pd-csi-driver-controller daemonset.apps/gcp-pd-csi-driver-node
 ```
 
 To build and run the operator locally:
@@ -37,6 +37,6 @@ export LIVENESS_PROBE_IMAGE=quay.io/openshift/origin-csi-livenessprobe:latest
 export KUBE_RBAC_PROXY_IMAGE=quay.io/openshift/origin-kube-rbac-proxy:latest
 
 # Run the operator via CLI
-./gcp-pd-csi-driver-operator start --kubeconfig $MY_KUBECONFIG --namespace openshift-cluster-csi-drivers
+./gcp-filestore-csi-driver-operator start --kubeconfig $MY_KUBECONFIG --namespace openshift-cluster-csi-drivers
 ```
 

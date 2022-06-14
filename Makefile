@@ -25,10 +25,10 @@ IMAGE_REGISTRY?=registry.svc.ci.openshift.org
 # $3 - Dockerfile path
 # $4 - context directory for image build
 # It will generate target "image-$(1)" for building the image and binding it as a prerequisite to target "images".
-$(call build-image,gcp-pd-csi-driver-operator,$(IMAGE_REGISTRY)/ocp/4.7:gcp-pd-csi-driver-operator,./Dockerfile.rhel7,.)
+$(call build-image,gcp-filestore-csi-driver-operator,$(IMAGE_REGISTRY)/ocp/4.7:gcp-filestore-csi-driver-operator,./Dockerfile.rhel7,.)
 
 clean:
-	$(RM) gcp-pd-csi-driver-operator
+	$(RM) gcp-filestore-csi-driver-operator
 .PHONY: clean
 
 GO_TEST_PACKAGES :=./pkg/... ./cmd/...

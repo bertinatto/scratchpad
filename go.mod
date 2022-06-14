@@ -1,4 +1,4 @@
-module github.com/openshift/gcp-pd-csi-driver-operator
+module github.com/openshift/gcp-filestore-csi-driver-operator
 
 go 1.17
 

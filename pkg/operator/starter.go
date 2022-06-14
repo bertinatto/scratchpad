@@ -13,7 +13,7 @@ import (
 	opv1 "github.com/openshift/api/operator/v1"
 	configclient "github.com/openshift/client-go/config/clientset/versioned"
 	configinformers "github.com/openshift/client-go/config/informers/externalversions"
-	"github.com/openshift/gcp-pd-csi-driver-operator/assets"
+	"github.com/openshift/gcp-filestore-csi-driver-operator/assets"
 	"github.com/openshift/library-go/pkg/controller/controllercmd"
 	"github.com/openshift/library-go/pkg/controller/factory"
 	"github.com/openshift/library-go/pkg/operator/csi/csicontrollerset"
@@ -26,7 +26,7 @@ import (
 const (
 	// Operand and operator run in the same namespace
 	defaultNamespace   = "openshift-cluster-csi-drivers"
-	operatorName       = "gcp-pd-csi-driver-operator"
+	operatorName       = "gcp-filestore-csi-driver-operator"
 	operandName        = "gcp-pd-csi-driver"
 	secretName         = "gcp-pd-cloud-credentials"
 	trustedCAConfigMap = "gcp-pd-csi-driver-trusted-ca-bundle"

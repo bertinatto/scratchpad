@@ -15,4 +15,4 @@
 # vendor/
 
 _output
-gcp-pd-csi-driver-operator
+gcp-filestore-csi-driver-operator
