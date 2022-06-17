@@ -86,7 +86,7 @@ spec:
           lifecycle:
             preStop:
               exec:
-                command: ["/bin/sh", "-c", "rm -rf /registration/pd.csi.storage.gke.io-reg.sock /csi/csi.sock"]
+                command: ["/bin/sh", "-c", "rm -rf /registration/filestore.csi.storage.gke.io-reg.sock /csi/csi.sock"]
           env:
             - name: KUBE_NODE_NAME
               valueFrom:
@@ -95,7 +95,7 @@ spec:
             - name: ADDRESS
               value: /csi/csi.sock
             - name: DRIVER_REG_SOCK_PATH
-              value: /var/lib/kubelet/plugins/pd.csi.storage.gke.io/csi.sock
+              value: /var/lib/kubelet/plugins/filestore.csi.storage.gke.io/csi.sock
           volumeMounts:
             - name: plugin-dir
               mountPath: /csi
@@ -127,7 +127,7 @@ spec:
             type: Directory
         - name: plugin-dir
           hostPath:
-            path: /var/lib/kubelet/plugins/pd.csi.storage.gke.io/
+            path: /var/lib/kubelet/plugins/filestore.csi.storage.gke.io/
             type: DirectoryOrCreate
         - name: registration-dir
           hostPath:

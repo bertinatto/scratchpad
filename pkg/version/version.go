@@ -36,7 +36,7 @@ func Get() version.Info {
 func init() {
 	buildInfo := prometheus.NewGaugeVec(
 		prometheus.GaugeOpts{
-			Name: "openshift_gcp_pd_csi_driver_operator",
+			Name: "openshift_gcp_filestore_csi_driver_operator",
 			Help: "A metric with a constant '1' value labeled by major, minor, git commit & git version from which OpenShift GCP Filestore CSI Driver Operator was built.",
 		},
 		[]string{"major", "minor", "gitCommit", "gitVersion"},

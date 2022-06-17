@@ -1,11 +1,6 @@
 apiVersion: storage.k8s.io/v1
 kind: StorageClass
 metadata:
-  name: standard-csi
-provisioner: pd.csi.storage.gke.io
-parameters:
-  type: pd-standard
-  replication-type: none
-volumeBindingMode: WaitForFirstConsumer
+  name: filestore-csi
+provisioner: filestore.csi.storage.gke.io
 allowVolumeExpansion: true
-reclaimPolicy: Delete

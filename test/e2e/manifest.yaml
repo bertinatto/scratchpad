@@ -3,7 +3,7 @@ StorageClass:
 SnapshotClass:
   FromName: true
 DriverInfo:
-  Name: pd.csi.storage.gke.io
+  Name: filestore.csi.storage.gke.io
   SupportedFsType:
     xfs: {}
     ext4: {}

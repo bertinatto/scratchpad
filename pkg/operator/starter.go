@@ -47,7 +47,7 @@ func RunOperator(ctx context.Context, controllerConfig *controllercmd.Controller
 
 	// Create GenericOperatorclient. This is used by the library-go controllers created down below
 	gvr := opv1.SchemeGroupVersion.WithResource("clustercsidrivers")
-	operatorClient, dynamicInformers, err := goc.NewClusterScopedOperatorClientWithConfigName(controllerConfig.KubeConfig, gvr, string(opv1.GCPPDCSIDriver))
+	operatorClient, dynamicInformers, err := goc.NewClusterScopedOperatorClientWithConfigName(controllerConfig.KubeConfig, gvr, "filesore.csi.storage.gke.io") // FIXME: opv1 constant
 	if err != nil {
 		return err
 	}
@@ -64,7 +64,7 @@ func RunOperator(ctx context.Context, controllerConfig *controllercmd.Controller
 		operandName,
 		false,
 	).WithStaticResourcesController(
-		"GCPPDDriverStaticResourcesController",
+		"GCPFilestoreDriverStaticResourcesController",
 		kubeClient,
 		dynamicClient,
 		kubeInformersForNamespaces,
@@ -95,10 +95,10 @@ func RunOperator(ctx context.Context, controllerConfig *controllercmd.Controller
 			"rbac/prometheus_rolebinding.yaml",
 		},
 	).WithCSIConfigObserverController(
-		"GCPPDDriverCSIConfigObserverController",
+		"GCPFilestoreDriverCSIConfigObserverController",
 		configInformers,
 	).WithCSIDriverControllerService(
-		"GCPPDDriverControllerServiceController",
+		"GCPFilestoreDriverControllerServiceController",
 		assets.ReadFile,
 		"controller.yaml",
 		kubeClient,
@@ -123,7 +123,7 @@ func RunOperator(ctx context.Context, controllerConfig *controllercmd.Controller
 		),
 		csidrivercontrollerservicecontroller.WithReplicasHook(nodeInformer.Lister()),
 	).WithCSIDriverNodeService(
-		"GCPPDDriverNodeServiceController",
+		"GCPFilestoreDriverNodeServiceController",
 		assets.ReadFile,
 		"node.yaml",
 		kubeClient,
@@ -136,7 +136,7 @@ func RunOperator(ctx context.Context, controllerConfig *controllercmd.Controller
 			configMapInformer,
 		),
 	).WithServiceMonitorController(
-		"GCPPDDriverServiceMonitorController",
+		"GCPFilestoreDriverServiceMonitorController",
 		dynamicClient,
 		assets.ReadFile,
 		"servicemonitor.yaml",
