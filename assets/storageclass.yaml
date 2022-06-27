@@ -3,4 +3,6 @@ kind: StorageClass
 metadata:
   name: filestore-csi
 provisioner: filestore.csi.storage.gke.io
+parameters:
+  network: fbertina-dev3-jzjxv-network
 allowVolumeExpansion: true

@@ -36,31 +36,26 @@ spec:
             - --endpoint=$(CSI_ENDPOINT)
             - --logtostderr
             - --v=${LOG_LEVEL}
+            - --nodeid=$(KUBE_NODE_NAME)
+            - --node=true
           env:
             - name: CSI_ENDPOINT
               value: unix:/csi/csi.sock
+            - name: KUBE_NODE_NAME
+              valueFrom:
+                fieldRef:
+                  fieldPath: spec.nodeName
           volumeMounts:
             - name: kubelet-dir
               mountPath: /var/lib/kubelet
               mountPropagation: "Bidirectional"
             - name: plugin-dir
               mountPath: /csi
-            - name: device-dir
-              mountPath: /dev
-            # The following mounts are required to trigger host udevadm from
-            # container
-            - name: udev-rules-etc
-              mountPath: /etc/udev
-            - name: udev-rules-lib
-              mountPath: /lib/udev
-            - name: udev-socket
-              mountPath: /run/udev
-            - name: sys
-              mountPath: /sys
           ports:
             - name: healthz
-              # Due to hostNetwork, this port is open on all nodes!
-              containerPort: 10300
+              # Due to hostNetwork, this port is open on a node and cannot
+              # conflict with any port used by other CSI drivers.
+              containerPort: 10302
               protocol: TCP
           livenessProbe:
             httpGet:
@@ -74,6 +69,11 @@ spec:
             requests:
               memory: 50Mi
               cpu: 10m
+        # - name: nfs-services
+        #   # Modify this image for local development with master branch.
+        #   image: gcr.io/gke-release/gcp-filestore-csi-driver:v0.2.0-gke.0
+        #   command: ["/nfs_services_start.sh"]
+          
         - name: csi-node-driver-registrar
           securityContext:
             privileged: true
@@ -111,7 +111,7 @@ spec:
           args:
             - --csi-address=/csi/csi.sock
             - --probe-timeout=3s
-            - --health-port=10300
+            - --health-port=10302
             - --v=${LOG_LEVEL}
           volumeMounts:
             - name: plugin-dir
@@ -132,26 +132,4 @@ spec:
         - name: registration-dir
           hostPath:
             path: /var/lib/kubelet/plugins_registry/
-            type: Directory
-        - name: device-dir
-          hostPath:
-            path: /dev
-            type: Directory
-        # The following mounts are required to trigger host udevadm from
-        # container
-        - name: udev-rules-etc
-          hostPath:
-            path: /etc/udev
-            type: Directory
-        - name: udev-rules-lib
-          hostPath:
-            path: /lib/udev
-            type: Directory
-        - name: udev-socket
-          hostPath:
-            path: /run/udev
-            type: Directory
-        - name: sys
-          hostPath:
-            path: /sys
             type: Directory
